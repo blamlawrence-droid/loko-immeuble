@@ -26,32 +26,11 @@ jobs:
           java -version || true
           gradle -v || true
 
-      - name: Build APK (use wrapper if present)
+      - name: Build APK (use repo gradle wrapper)
         run: |
           set -e
-          cd android || true
-          if [ -f ./gradlew ]; then
-            chmod +x ./gradlew
-            ./gradlew assembleDebug --no-daemon
-          else
-            # fallback to system gradle if available
-            if command -v gradle >/dev/null 2>&1; then
-              gradle assembleDebug
-            else
-              echo "No gradle wrapper and no system gradle available. Attempting to use Gradle wrapper via Gradle distribution..."
-              # try to download gradle and run wrapper (best-effort)
-              curl -sSfL https://services.gradle.org/distributions/gradle-8.3-bin.zip -o /tmp/gradle.zip
-              unzip -q /tmp/gradle.zip -d /tmp
-              export PATH="/tmp/gradle-8.3/bin:$PATH"
-              if command -v gradle >/dev/null 2>&1; then
-                gradle wrapper
-                ./gradlew assembleDebug
-              else
-                echo "Gradle not available; cannot build"
-                exit 1
-              fi
-            fi
-          fi
+          chmod +x ./gradlew || true
+          ./gradlew :app:assembleDebug --no-daemon --warning-mode=all
 
       - name: Upload APK artifact
         if: success()
