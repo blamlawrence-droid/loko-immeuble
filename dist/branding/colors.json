@@ -1,0 +1,13 @@
+{
+  "primary": "#2C5FC2",
+  "dark_neutral": "#37332B",
+  "neutral_gray": "#6C6C6B",
+  "muted_blue_gray": "#7B8A98",
+  "light_neutral": "#A3A5A7",
+  "soft_tint": "#AFB7CB",
+  "pale_neutral": "#BFC3C8",
+  "background_light": "#E1E3E5",
+  "source": "dist/branding/source/maket.jpeg",
+  "generated_by": "automated-extraction",
+  "generated_at": "2026-09-02T00:37:00Z"
+}

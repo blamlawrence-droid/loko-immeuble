@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
+  <defs>
+    <style type="text/css"><![CDATA[
+      .fill { fill: #FFFFFF; }
+      .title { font-family: 'Poppins', Arial, sans-serif; font-weight: 600; font-size:48px; fill:#FFFFFF }
+    ]]></style>
+  </defs>
+  <g id="mark" transform="translate(24,24)">
+    <polygon class="fill" points="40,0 90,40 0,40" />
+    <rect x="8" y="40" width="64" height="88" rx="6" ry="6" class="fill" opacity="0.95" />
+    <rect x="18" y="54" width="16" height="16" rx="2" ry="2" fill="#2C5FC2" />
+    <rect x="40" y="54" width="16" height="16" rx="2" ry="2" fill="#2C5FC2" />
+    <rect x="18" y="76" width="16" height="16" rx="2" ry="2" fill="#2C5FC2" />
+    <rect x="40" y="76" width="16" height="16" rx="2" ry="2" fill="#2C5FC2" />
+    <rect x="30" y="100" width="12" height="28" rx="2" ry="2" fill="#FFFFFF" />
+  </g>
+  <text x="140" y="96" class="title">Loko Immeuble</text>
+</svg>

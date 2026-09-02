@@ -1,0 +1,2 @@
+rootProject.name = 'loko-immeuble'
+include ':app'
