@@ -26,18 +26,17 @@ jobs:
           java -version || true
           gradle -v || true
 
-      - name: Build APK (use repo gradle wrapper)
+      - name: Build APK (use android/gradlew)
         run: |
           set -e
-          chmod +x ./gradlew || true
-          if ./gradlew :app:assembleDebug --no-daemon --warning-mode=all; then
-            echo "Build succeeded with repo wrapper"
+          chmod +x ./android/gradlew || true
+          if ./android/gradlew assembleDebug --no-daemon --warning-mode=all; then
+            echo "Build succeeded with android/gradlew"
           else
-            echo "Repo wrapper failed — attempting to download Gradle 7.5 and regenerate wrapper"
+            echo "android/gradlew failed — attempting to download Gradle 7.5 and regenerate wrapper in android/"
             curl -sSfL https://services.gradle.org/distributions/gradle-7.5-bin.zip -o /tmp/gradle.zip
             unzip -q /tmp/gradle.zip -d /tmp
             export PATH="/tmp/gradle-7.5/bin:$PATH"
-            # generate a wrapper inside the Android project directory
             gradle -p android wrapper --gradle-version 7.5
             chmod +x ./android/gradlew || true
             ./android/gradlew assembleDebug --no-daemon --warning-mode=all
