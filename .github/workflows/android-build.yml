@@ -9,8 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: cirrusci/android-sdk:latest
     env:
-      ANDROID_SDK_ROOT: $RUNNER_TEMP/android-sdk
+      ANDROID_SDK_ROOT: /opt/android/sdk
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,18 +22,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Android SDK commandline tools
-        run: |
-          set -e
-          mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
-          cd "$ANDROID_SDK_ROOT/cmdline-tools"
-          curl -sSfL "https://dl.google.com/android/repository/commandlinetools-linux-114.0.0_latest.zip" -o cmdline.zip
-          unzip -q cmdline.zip
-          mv cmdline-tools latest || true
-          yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "platforms;android-33" "build-tools;33.0.2"
-
       - name: Show Java and Gradle
-        run: java -version || true
+        run: |
+          java -version || true
+          gradle -v || true
 
       - name: Build APK (use wrapper if present)
         run: |
